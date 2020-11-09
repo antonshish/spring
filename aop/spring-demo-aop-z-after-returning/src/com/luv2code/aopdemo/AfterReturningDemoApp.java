@@ -1,0 +1,28 @@
+package com.luv2code.aopdemo;
+
+import java.util.List;
+
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import com.luv2code.aopdemo.dao.AccountDAO;
+
+public class AfterReturningDemoApp {
+
+	public static void main(String[] args) {
+		
+		AnnotationConfigApplicationContext context =
+				new AnnotationConfigApplicationContext(DemoConfig.class);
+		
+		AccountDAO dao = context.getBean("accountDAO", AccountDAO.class);
+		
+		List<Account> accs = dao.findAccounts();
+		
+		System.out.println("\n\n Main:");
+		System.out.println("---");
+		System.out.println(accs);
+		System.out.println("\n");
+		
+		context.close();
+	}
+
+}
